@@ -1,0 +1,68 @@
+.navbar {
+    background-color: #a0b5f0;
+    min-height: 100px;
+}
+
+.nav-link {
+    color: white
+}
+
+.link-custom {
+    color: black;
+    
+}
+.link-custom:hover {
+    text-decoration: none;
+}
+
+.linebase {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: lightgrey;
+    height: 40px;
+    text-align: left;
+    cursor: default;
+}
+
+.cursor-link {
+    cursor: pointer
+}
+
+.linebase-default {
+    border-color: lightgrey;
+}
+
+.linebase-marcado {
+    background-color: lightblue;
+    border-color: lightblue;
+}
+
+.labelbase {
+    padding-top: 6px;
+}
+
+.linebase-sucesso {
+    background-color: #288b38cc;
+}
+
+.linebase-erro {
+    background-color: tomato;
+}
+
+.imgbase {
+    width: 38px;
+    height: 38px;
+    border: none;
+}
+
+.borda {
+    border-style: solid;
+    border-color: rgb(231, 235, 238);
+    border-width: 1px;
+    box-shadow: 1px, 10px, 10px;
+}
+
+.left {
+    text-align: left;
+}
