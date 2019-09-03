@@ -7,6 +7,7 @@ import SolsUsuario from './solsUsuario'
 import SolsModulo from './solsModulo'
 import DetalhesSol from './detalhesSols'
 import CardSol from './cardSol'
+import dados from '../dados'
 
 const URLBASE = 'http://projetos01.datacoper.com.br/issues.json'
 const idTrackerBUG = 10
@@ -15,7 +16,7 @@ const projetos = [
     {id:71, name: 'Progress - Time 02'},
     {id:72, name: 'Progress - Time 03'}
 ]
-const base64 = Buffer.from('eduardo.silva:7394Ed1%5').toString('base64')
+const base64 = Buffer.from(`${dados.usuario}:${dados.senha}`).toString('base64')
 const config = {
     headers: {"Authorization": "Basic " + base64}
 }
@@ -69,6 +70,7 @@ export default class Solicitacoes extends Component {
 
             if(resp.data.total_count > offset + limit)
                 this.reqget(url, offset + limit, projeto)
+                
         }).catch(err => {
             console.log(`Parece que deu erro. (Projeto: ${projeto.name})`)
             console.log(err)
@@ -127,6 +129,7 @@ export default class Solicitacoes extends Component {
         this.clientes.push({ id: '45', nome: 'Cotrisana' })
         this.clientes.push({ id: '46', nome: 'Datacoper' })
         this.clientes.push({ id: '48', nome: 'Fiasul' })
+        this.clientes.push({ id: '49', nome: 'Gastroclínica' })
         this.clientes.push({ id: '53', nome: 'Kodyak (Cooagril)' })
         this.clientes.push({ id: '56', nome: 'Plantar' })
     }
@@ -197,6 +200,24 @@ export default class Solicitacoes extends Component {
         let {listagem} = this.state
         listagem.list = list
         this.setState({...this.state, listagem})
+    }
+
+    getSolsPlantar = () => {
+        let sols = this.state.solicitacoes.filter(s => {
+            return this.getCliente(s) === '56'
+        })
+        return sols
+    }
+
+    getCliente = (sol) => {
+        let cliente = ''
+        if(sol.custom_fields) {
+            let fieldCliente = sol.custom_fields.filter(f => {
+                return f.id === 18
+            })
+            cliente = fieldCliente[0].value || ''
+            return cliente
+        } else return ''
     }
 
     render = () => {

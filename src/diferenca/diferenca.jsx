@@ -63,6 +63,9 @@ export default class Diferenca extends Component {
 
     reqDif = () => {
         let {baseMain, baseDestino, tabelas = 'all'} = this.state
+        
+        tabelas = tabelas === '' ? 'all' : tabelas
+
         if(this.validarDados()) {
             this.setState({...this.state, enSubmit: false})
             console.log("Fazendo Requisicao")

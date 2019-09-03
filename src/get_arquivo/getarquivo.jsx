@@ -15,7 +15,7 @@ export default class GetArquivo extends Component {
 
     addNotification(obj) {
         let {title, message, type, duration} = obj
-        let duracao = duration || 2000
+        duration = duration || 2000
         this.notificationDOMRef.current.addNotification({
             title: title,
             message: message,
@@ -24,7 +24,7 @@ export default class GetArquivo extends Component {
             container: "top-right",
             animationIn: ["animated", "fadeIn"],
             animationOut: ["animated", "fadeOut"],
-            dismiss: { duration: duracao },
+            dismiss: { duration },
             dismissable: { click: true }
         });
     }

@@ -60,6 +60,7 @@ export default class CompararBases extends Component {
             let baseDestino = base.nome
             let url = `${URL_DUMP}diff?baseMain=${baseMain}&baseDestino=${baseDestino}&tabelas=${tabelas}`
             axios.get(url).then(resp => {
+                console.log(resp.data)
                 this.setBaseStatus(baseDestino, 'CONCLUIDO')
             }).catch(err => {
                 this.setBaseStatus(baseDestino, 'ERRO')

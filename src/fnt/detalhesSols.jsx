@@ -55,7 +55,9 @@ export default props => {
 
             return (
                 <tr key={tarefa.id}>
-                    <td><a href={`${url}${tarefa.id}`} target="_blank" rel="noopener noreferrer">{tarefa.id}</a></td>
+                    <td>
+                        <a href={`${url}${tarefa.id}`} target="_blank" rel="noopener noreferrer">{tarefa.id}</a>
+                    </td>
                     <td>{solicitacao}</td>
                     <td>{getCliente(cliente)}</td>
                     <td>{getUsuario(tarefa.assigned_to)}</td>
@@ -73,7 +75,7 @@ export default props => {
             <table className="table">
                 <thead>
                     <tr>
-                        <th>Tarefa</th>
+                        <th><button className="link">Tarefa</button></th>
                         <th>Solicitação</th>
                         <th>Cliente</th>
                         <th>Usuário</th>

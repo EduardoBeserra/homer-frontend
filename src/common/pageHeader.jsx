@@ -27,6 +27,9 @@ export default props => (
                 <li className="nav-item">
                     <Link className="nav-link" to="geradorcodigo">Gerador Código</Link>
                 </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="graficos">Gráficos</Link>
+                </li>
             </ul>
         </div>
         <ul className="navbar-nav flex-row ml-md-auto d-none d-md-flex">

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
-//import Fields from './fields'
-const gerador = require('./gerador')
+import Fields from './fields'
+//const gerador = require('./gerador')
 
 export default class Gerador extends Component {
     constructor (props) {
@@ -16,6 +16,8 @@ export default class Gerador extends Component {
                 },
             }
         }
+        this.removeField = this.removeField.bind(this)
+        
     }
 
     change = (e, campo) => {
@@ -27,8 +29,37 @@ export default class Gerador extends Component {
             case 'desc_table':
                 config.table.description = e.target.value
                 break
+            default:
+                break
         }
         this.setState({...this.state, config})
+    }
+
+    changeField = (field, evt, campo) => {
+        let {config} = this.state
+        let {fields} = config.table
+        let novoField = fields.filter(f => {
+            return f.id === field.id
+        })[0]
+        switch(campo) {
+            case 'nameF':
+                novoField.name = evt.target.value
+                break
+            case 'typeF':
+                novoField.type = evt.target.value
+                break
+            default:
+                break
+        }
+        config.table.fields = this.atualizarField(fields, novoField)
+        this.setState({ ...this.state, config })
+    }
+
+    atualizarField = (fields, field) => {
+        let list = fields.map(f => {
+            return f.id === field.id ? field : f
+        })
+        return list
     }
 
     newField = () => {
@@ -42,6 +73,17 @@ export default class Gerador extends Component {
         config.table.fields.push(f)
 
         this.setState({...this.state, config})
+    }
+
+    removeField = (f) => {
+        let {config} = this.state
+        let {fields} = config.table
+        fields = fields.filter(field => {
+            return field.id !== f.id
+        })
+        config.table.fields = fields
+
+        this.setState({ ...this.state, config })
     }
 
     render() {
@@ -63,9 +105,10 @@ export default class Gerador extends Component {
                     </div>
                 </div>
                 <br />
-                
+                <Fields newField={this.newField} fields={this.state.config.table.fields}
+                    removeF={this.removeField}
+                    changeField={this.changeField} />
             </div>
         )
-        /*<Fields newField={this.newField} fields={this.state.config.table.fields}/>*/
     }
 }

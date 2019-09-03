@@ -9,6 +9,7 @@ import CompararBases from './atualizacao/compararBases'
 import Solicitacoes from "./fnt/solicitacoes"
 import SolsEtapa from './fnt/solsEtapa'
 import Gerador from './gerador-codigo/gerador-codigo'
+import PieSolsClientes from './fnt/graficos/PieSolsClientes'
 
 export default props => (
     <div className="content-wrapper">
@@ -21,6 +22,7 @@ export default props => (
             <Route path='/fnt' component={Solicitacoes} />
             <Route path='solsEtapa' component={SolsEtapa} />
             <Route path='/geradorcodigo' component={Gerador} />
+            <Route path='/graficos' component={PieSolsClientes} />
 
             <Redirect from="*" to="/" />
         </Switch>
