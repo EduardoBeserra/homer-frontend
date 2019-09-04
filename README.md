@@ -1,5 +1,18 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Antes de executar
+
+Crie um arquivo src/dados.js
+
+Esse arquivo de conter usuario e senha de acesso ao Redmine. Ex:
+
+```
+export default {
+    usuario: "user",
+    senha: "pass"
+}
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
