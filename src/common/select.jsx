@@ -4,6 +4,7 @@ export default props => {
     
     const setOptions = () => {
         let list = props.list || []
+        list = list.sort((b1 , b2) => b1.name > b2.name ? 1 : -1)
         
         return list.map(obj => (
             <option key={obj[props.chave]}>{obj[props.valor]}</option>
@@ -11,11 +12,8 @@ export default props => {
     }
 
     return (
-        <div className="form-group text-left" style={{ paddingTop: "5px" }}>
-            <label>{props.label}</label>
-            <select className="form-control" onChange={props.onChange} value={props.default}>
-                {setOptions()}
-            </select>
-        </div>
+        <select onChange={props.onChange} value={props.default} className={props.className}>
+            {setOptions()}
+        </select>
     )
 }

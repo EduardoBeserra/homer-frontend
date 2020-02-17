@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Chart from "react-google-charts";
-import dados from '../dados'
+import dados from '../../dados'
+import Barra from '../testewebsocket'
 
 const projetos = [
     { id: 70, name: 'Progress - Time 01' },
@@ -128,18 +129,23 @@ export default class extends Component {
     render() {
         let dados = this.montarDados()
         return (
-            <Chart
-                width={'800px'}
-                height={'600px'}
-                chartType="PieChart"
-                loader={<div>Loading Chart</div>}
-                data={dados}
-                options={{
-                    title: 'Clientes',
-                    sliceVisibilityThreshold: 0.03,
-                }}
-                rootProps={{ 'data-testid': '7' }}
-            />
+            <div>
+                {/*
+                <Chart
+                    width={'800px'}
+                    height={'600px'}
+                    chartType="PieChart"
+                    loader={<div>Loading Chart</div>}
+                    data={dados}
+                    options={{
+                        title: 'Clientes',
+                        sliceVisibilityThreshold: 0.03,
+                    }}
+                    rootProps={{ 'data-testid': '7' }}
+                />
+                */}
+                <Barra />
+            </div>
         )
     }
 }

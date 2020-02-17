@@ -10,9 +10,10 @@ import Solicitacoes from "./fnt/solicitacoes"
 import SolsEtapa from './fnt/solsEtapa'
 import Gerador from './gerador-codigo/gerador-codigo'
 import PieSolsClientes from './fnt/graficos/PieSolsClientes'
+import Int003 from './int003/int003'
 
 export default props => (
-    <div className="content-wrapper">
+    <div className="content-area">
         <Switch>
             <Route exact path='/' component={Diferenca} />
             <Route path='/parametros' component={Parametro} />
@@ -20,9 +21,10 @@ export default props => (
             <Route path='/getarquivo' component={GetArquivo} />
             <Route path='/compararbases' component={CompararBases} />
             <Route path='/fnt' component={Solicitacoes} />
-            <Route path='solsEtapa' component={SolsEtapa} />
+            <Route path='/solsEtapa' component={SolsEtapa} />
             <Route path='/geradorcodigo' component={Gerador} />
             <Route path='/graficos' component={PieSolsClientes} />
+            <Route path='/int003' component={Int003} />
 
             <Redirect from="*" to="/" />
         </Switch>

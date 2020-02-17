@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import homerImage from '../img/homer1.png'
 
 export default props => (
-    <header className="navbar navbar-expand bg-secundary flex-column flex-md-row bd-navbar">
+    <header className="navbar navbar-expand bg-secundary flex-column flex-md-row bd-navbar header-area">
         <div className="navbar-nav-scroll">
             <ul className="navbar-nav bd-navbar-nav flex-row">
                 <li className="nav-item">
@@ -29,6 +29,9 @@ export default props => (
                 </li>
                 <li className="nav-item">
                     <Link className="nav-link" to="graficos">Gráficos</Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="int003">int003</Link>
                 </li>
             </ul>
         </div>

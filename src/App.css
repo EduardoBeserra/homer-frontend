@@ -1,33 +1,66 @@
-.App {
-  text-align: center;
+body {
+    margin: 0px;
+    padding: 0px;
+}
+.app {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    grid-template-columns: 225px 1fr;
+    grid-template-rows: 1fr 40px;
+    grid-template-areas:
+        "menu content"
+        "menu footer";
+    height: 100vh;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.menu-area {
+    grid-area: menu;
+    display: grid;
+    background-color: #b1c7d3;
+    grid-template-columns: 1fr;
+    grid-template-rows: 150px 1fr;
+    grid-template-areas: "menu-logo""menu-itens";
+    background-color: #47257e;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.menu-logo {
+    grid-area: "menu-logo";
+    display: flex;
+    background-color: #00000000;
 }
 
-.App-link {
-  color: #61dafb;
+.menu-logo img {
+    width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.menu-itens li {
+    list-style: none;
+}
+
+.menu-item, .menu-item:hover {
+    grid-area: "meu-item";
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: #00000000;
+}
+
+.content-area {
+    grid-area: content;
+}
+
+.footer-area {
+    grid-area: footer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 25px 0 0;
+    margin: 0px;
+    background-color: #FFF;
+    box-shadow:
+        0 2px 23px 0 rgba(0, 0, 0, 0.1),
+        0 2px 49px 0 rgba(0, 0, 0, 0.06);
+    
 }

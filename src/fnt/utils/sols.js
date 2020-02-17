@@ -1,10 +1,12 @@
 const URLBASE = 'http://projetos01.datacoper.com.br/issues.json'
+import dados from '../dados'
+
 const projetos = [
     {id:70, name: 'Progress - Time 01'},
     {id:71, name: 'Progress - Time 02'},
     {id:72, name: 'Progress - Time 03'}
 ]
-const base64 = Buffer.from('eduardo.silva:7394Ed1%5').toString('base64')
+const base64 = Buffer.from(`${dados.usuario}:${dados.senha}`).toString('base64')
 const config = {
     headers: {"Authorization": "Basic " + base64}
 }

@@ -1,0 +1,81 @@
+.cb-content {
+    margin: 10px;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 50% 50%;
+    grid-template-areas: "left right";
+}
+
+.cb-content .cb-select-form {
+    font-size: 14px;
+    height: 30px;
+    color: #4e4e4e;
+    border-radius: 5px;
+    border: 1px solid #a8a8a8;
+}
+
+.cb-titulo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bolder;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.cb-panel-left {
+    grid-area: left;
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+}
+
+.cb-panel-right {
+    grid-area: right;
+    margin: 5px;
+}
+
+.cb-panel-right .campo {
+    display: grid;
+}
+
+.lista-bases {
+    margin-top: 20px;
+}
+
+.lista-bases li {
+    list-style: none;
+    display: flex;
+    height: 30px;
+}
+
+.lista-bases li .base-item, .base-item-sel, .base-item-erro, .base-item-sucesso {
+    border: 1px solid #a8a8a8;
+    border-radius: 5px;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 30px;
+    grid-template-areas: "base-item-txt base-item-img";
+    cursor: pointer;
+}
+
+.lista-bases li .base-item-sel {
+    background-color: #705ce2;
+}
+
+.lista-bases li .base-item-sucesso {
+    background-color: #519b55;
+}
+
+.lista-bases li .base-item-erro {
+    background-color: #e94c40;
+}
+
+.lista-bases li .base-item .txt {
+    grid-area: base-item-txt;
+}
+.lista-bases li .base-item img {
+    grid-area: base-item-img;
+    width: 30px;
+}

@@ -1,0 +1,44 @@
+.conteudo {
+    padding: 10px;
+}
+
+.form-flex {
+    padding: 0px;
+    margin: 0px;
+}
+
+.form-flex .campo {
+    padding: 0;
+    margin: 0px;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 150px 1fr;
+}
+
+.form-flex .button {
+    margin-top: 12px;
+    width: 100%;
+    list-style-type: none;
+}
+
+.label-form {
+    color: #797979;
+    padding: 8px;
+    letter-spacing: .08em;
+    flex: 1 0 120px;
+    max-width: 150px;
+}
+
+.select-form, .input-form {
+    width: 100%;
+    height: 40px;
+    color: #4e4e4e;
+    font-size: 17px;
+    margin-top: 12px;
+    border-radius: 5px;
+    border: 1px solid #a8a8a8;
+}
+
+.input-form {
+    padding-left: 6px;
+}

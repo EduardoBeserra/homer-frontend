@@ -1,76 +1,80 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
 import axios from 'axios'
 
 import BasesCheckBox from './basesCheckBox'
 import Select from '../common/select'
+import Resumo from '../resumo/resumo'
 
-const URL = 'http://prg01.datacoper.com.br:40580/IntegradorProgress/rest/Properties'
+import { bases as basesArq } from "../arq/bases";
+
+import './styles.css'
+
 const URL_DUMP = 'http://prg01.datacoper.com.br:40580/Homer/rest/'
 
-export default class CompararBases extends Component {
+export default () => {
 
-    constructor(props) {
-        super(props)
-        this.state = { bases: [], baseMain: 'BDMain.properties', tabelas: 'est001'}
-        this.changeItem = this.changeItem.bind(this)
-        this.executar = this.executar.bind(this)
-        this.getBases()
-    }
+    let [bases, setBases] = useState([])
+    let [baseMain, setBaseMain] = useState('')
+    let [tabelas, setTabelas] = useState('')
 
-    getBases = () => {
-        axios.get(URL).then(resp => {
-            this.setState(
-                {...this.state,
-                    bases: resp.data.map(nome => {
-                        return {nome: nome, status: '', selected: false}
-                    })
-                }
-            )
-        })
-    }
+    useEffect(() => {
+        let bases = basesArq.map(b => { return {...b, status: ''} })
+        console.log(bases)
+        setBases(bases)
+        setBaseMain('main')
+        setTabelas('est001')
+    }, [])
 
-    changeItem = (base) => {
-        let bases = this.state.bases
+    const changeItem = (base) => {
         base.selected = !base.selected
 
         let newBases = bases.map(b => {
-            if(b.nome === base.nome)
+            if (b.name === base.name)
                 return base
             else
                 return b
         })
-        this.setState({...this.state, bases: newBases})
+        setBases(newBases)
     }
 
-    setBaseStatus = (nomeBase, status) => {
-        let newBases = this.state.bases.map(base => {
-            if(base.nome === nomeBase)
-                return {...base, status}
+    const setBaseStatus = (base, status) => {
+        let newBases = bases.map(b => {
+            if (b.name === base.name)
+                return { ...b, status }
             else
-                return base
+                return b
         })
-        this.setState({...this.state, bases: newBases})
+        setBases(newBases)
     }
 
-    execDiff = baseMain => {
-        this.state.bases.filter(base => {
+    const execDiff = baseMain => {
+        bases.filter(base => {
             return base.selected
         }).forEach(base => {
-            let {tabelas} = this.state
-            let baseDestino = base.nome
+            let baseDestino = base.name
             let url = `${URL_DUMP}diff?baseMain=${baseMain}&baseDestino=${baseDestino}&tabelas=${tabelas}`
             axios.get(url).then(resp => {
                 console.log(resp.data)
-                this.setBaseStatus(baseDestino, 'CONCLUIDO')
+                setBaseStatus(base, 'CONCLUIDO')
             }).catch(err => {
-                this.setBaseStatus(baseDestino, 'ERRO')
+                setBaseStatus(base, 'ERRO')
                 console.log(`Erro base ${baseDestino}`)
                 console.log(err)
             })
         })
     }
-    executar = () => {
-        let {baseMain, tabelas} = this.state
+
+    const executar = () => {
+        let basesSel = bases.filter(b => b.selected)
+        basesSel.forEach(b => {
+            axios.get('http://prg01.datacoper.com.br:40580/IntegradorProgress/rest/Properties').then(resp => {
+                setBaseStatus(b, 'CONCLUIDO')
+            }).catch(err => {
+                setBaseStatus(b, 'CONCLUIDO')
+            })
+        })
+        /*
+        let { baseMain, tabelas } = this.state
         let url = `${URL_DUMP}dump/filename?base=${baseMain}&tabelas=${tabelas}`
         axios.get(url).then(resp => {
             this.execDiff(`file=${resp.data}`)
@@ -81,23 +85,37 @@ export default class CompararBases extends Component {
                 type: 'danger'
             })
         })
+        */
     }
 
-    setMain = (evt) => {
-        this.setState({...this.state, baseMain: evt.target.value})
+    function wait(time) {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve();
+            }, time);
+        });
     }
 
-    render = () => {
-        return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-6" style={{paddingLeft: "45px"}}>
-                        <Select label="Base Main" list={this.state.bases} chave="nome" valor="nome"
-                            onChange={this.setMain} default={this.state.baseMain} />
+    const setMain = (evt) => {
+        setBaseMain(evt.target.value)
+    }
+
+    return (
+        <>
+            <div className="cb-titulo">Atualização</div>
+            <div className="cb-content form-flex">
+                <div className="cb-panel-left">
+                    <div className="campo">
+                        <label>Base Main</label>
+                        <Select list={bases} chave="name" valor="name"
+                            onChange={setMain} default={baseMain}
+                            className="cb-select-form" />
                     </div>
+                    <BasesCheckBox list={bases} changeItem={changeItem} />
                 </div>
-                <BasesCheckBox list={this.state.bases} changeItem={this.changeItem} execute={this.executar} />
+
+                <Resumo className="cb-panel-right" execute={executar} />
             </div>
-        )
-    }
+        </>
+    )
 }

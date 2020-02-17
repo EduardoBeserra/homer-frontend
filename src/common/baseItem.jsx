@@ -4,34 +4,27 @@ import imgErro from '../img/homer_erro.png'
 
 export default class BaseItem extends Component {
 
-    render = () => {
-        let base = this.props.base
-        let estilo = base.selected ? 'linebase-marcado' : 'linebase-default'
+    render() {
+        let {base} = this.props
+        let estilo = base.selected ? 'base-item-sel' : 'base-item'
         let img
 
         if(base.status === 'CONCLUIDO') {
-            estilo = 'linebase-sucesso'
+            estilo = 'base-item-sucesso'
             img = imgSucesso
         } else if(base.status === 'ERRO') {
-            estilo = 'linebase-erro'
+            estilo = 'base-item-erro'
             img = imgErro
         }
-        
+
         let objImg
         if(img)
-            objImg = <img src={img} className="imgbase" alt="Josi"></img>
+            objImg = <img src={img} alt="Homer"></img>
 
         return (
-            <div className={`d-flex flex-row linebase ${estilo}`}>
-                <div className="col-11 labelbase" onClick={() => this.props.onClick(this.props.base)}>
-                    {this.props.base.nome}
-                </div>
-
-                <div className="d-flex flex-wrap">
-                    <div style={{width:38}}>
-                        {objImg}
-                    </div>
-                </div>
+            <div className={`base-item ${estilo}`} onClick={() => this.props.onClick(base)}>
+                <div className="base-item-txt">{base.name}</div>
+                <div className="base-item-img">{ objImg }</div>
             </div>
         )
     }
