@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import Chart from "react-google-charts";
 import dados from '../../dados'
-import Barra from '../testewebsocket'
+//import Barra from '../testewebsocket'
 
 const projetos = [
     { id: 70, name: 'Progress - Time 01' },
@@ -134,7 +134,7 @@ export default class extends Component {
                     width={'800px'}
                     height={'600px'}
                     chartType="PieChart"
-                    loader={<div>Loading Chart</div>}
+                    loader={<div>Aguarde, carregando gráfico de solicitações por cliente.</div>}
                     data={dados}
                     options={{
                         title: 'Clientes',
