@@ -1,6 +1,8 @@
 import React from 'react'
 import { getModulo } from "./moduloUtil";
 
+import './detalhesSols.css'
+
 export default props => {
 
     const url = 'http://projetos01.datacoper.com.br/issues/'
@@ -28,6 +30,34 @@ export default props => {
         return listModulo.length > 0 ? listModulo[0].name : id
     }
 
+    const formatar = num => {
+        let ret = ''
+        if (num < 10)
+            ret = '0' + num
+        else
+            ret = '' + num
+        return ret
+    }
+    const getEstilo = dataPrevista => {
+        let dataprev = Date.parse(dataPrevista)
+        let today = new Date()
+        let hoje = Date.parse(today.getFullYear() + '-' + formatar(today.getMonth()+1) + '-' + formatar(today.getDate()))
+        
+        let diferenca = (dataprev - hoje) / (1000 * 3600 * 24)
+        let estilo = ''
+        if(dataPrevista === undefined)
+            estilo = ''
+        else if(diferenca < 0)
+            estilo = 'sol-atrasada'
+        else if(diferenca < 2)
+            estilo = 'sol-urgente'
+        else if(diferenca < 5)
+            estilo = 'sol-atencao'
+        else
+            estilo = 'sol-ok'
+        return estilo
+    }
+
     const renderLinhas = () => {
         let {list} = props.detalhes
 
@@ -40,6 +70,8 @@ export default props => {
         return list.map(tarefa => {
             let solicitacao = ''
             let cliente = ''
+            let estiloTarefa = getEstilo(tarefa.due_date)
+
             if(tarefa.custom_fields) {
                 let fieldSol = tarefa.custom_fields.filter(f => {
                     return f.id === 51
@@ -54,9 +86,9 @@ export default props => {
             }
 
             return (
-                <tr key={tarefa.id}>
+                <tr key={tarefa.id} className={estiloTarefa}>
                     <td>
-                        <a href={`${url}${tarefa.id}`} target="_blank" rel="noopener noreferrer">{tarefa.id}</a>
+                        <a href={`${url}${tarefa.id}`} target="_blank" rel="noopener noreferrer" className="link-tarefa">{tarefa.id}</a>
                     </td>
                     <td>{solicitacao}</td>
                     <td>{getCliente(cliente)}</td>
@@ -75,7 +107,7 @@ export default props => {
             <table className="table">
                 <thead>
                     <tr>
-                        <th><button className="link">Tarefa</button></th>
+                        <th>Tarefa</th>
                         <th>Solicitação</th>
                         <th>Cliente</th>
                         <th>Usuário</th>

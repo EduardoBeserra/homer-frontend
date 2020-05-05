@@ -38,7 +38,7 @@ export default class Int003 extends Component {
 
     refresh = () => {
         axios.get(`${URL}${BD}`).then(resp => {
-            let list = resp.data.dados.registro.map(r => {
+            let list = resp.data.map(r => {
                 let obj = {
                     empresa: r.int003_empresa,
                     nome: r.int003_nome,

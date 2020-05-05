@@ -1,0 +1,20 @@
+.sol-atrasada {
+    background-color: #e03333ce;
+}
+
+.sol-urgente {
+    background-color: lightcoral;
+}
+
+.sol-atencao {
+    background-color: lightyellow;
+}
+
+.sol-ok {
+    background-color: lightgreen;
+}
+
+.link-tarefa {
+    color: #000000;
+    font-weight: bold;
+}

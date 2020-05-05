@@ -10,6 +10,7 @@ export default () =>
         <div className="menu-itens">
             <ul>
                 <li><Link className="menu-item" to="diferenca">Diferença DFs</Link></li>
+                <li><Link className="menu-item" to="fnt">Solicitações</Link></li>
                 <li><Link className="menu-item" to="compararbases">Atualização</Link></li>
                 <li><Link className="menu-item" to="getarquivo">Arquivos</Link></li>
                 <li><Link className="menu-item" to="parametros">Configurações</Link></li>
