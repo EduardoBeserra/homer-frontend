@@ -42,7 +42,7 @@ export default class GetArquivo extends Component {
         let arq = this.state.arquivo
         let filename = arq.substring(arq.lastIndexOf('/') + 1)
         axios.get(`${URL}${this.state.arquivo}`).then(resp => {
-            download(resp.data, filename)
+            download(JSON.stringify(resp.data), filename)
         }).catch(resp => {
             console.log("Erro")
             console.log(resp)

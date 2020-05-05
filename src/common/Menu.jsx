@@ -15,6 +15,7 @@ export default () =>
                 <li><Link className="menu-item" to="parametros">Configurações</Link></li>
                 <li><Link className="menu-item" to="about">Sobre</Link></li>
                 <li><Link className="menu-item" to="int003">Int003</Link></li>
+                <li><Link className="menu-item" to="graficos">Gráfico</Link></li>
             </ul>
         </div>
     </div>

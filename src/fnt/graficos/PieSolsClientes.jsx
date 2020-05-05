@@ -130,7 +130,6 @@ export default class extends Component {
         let dados = this.montarDados()
         return (
             <div>
-                {/*
                 <Chart
                     width={'800px'}
                     height={'600px'}
@@ -143,8 +142,7 @@ export default class extends Component {
                     }}
                     rootProps={{ 'data-testid': '7' }}
                 />
-                */}
-                <Barra />
+                { /*<Barra /> */ }
             </div>
         )
     }
