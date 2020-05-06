@@ -3,6 +3,6 @@ import React from 'react'
 export default () => 
     <div className="footer-area">
         <span>
-            Homer Desenvolvido com por <strong>Equipe Progress DC</strong>
+            Homer Desenvolvido por <strong>Equipe Progress DC</strong>
         </span>
     </div>
