@@ -1,0 +1,24 @@
+.version-container {
+    margin-top: 50px;
+    padding: 10px;
+    width: 700px;
+    border: 1px;
+    border-radius: 5px;
+    border-color: #b1afaf;
+    border-style: solid;
+}
+
+.version-container div {
+    display: flex;
+}
+
+.text-bold {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.version-detalhes {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}

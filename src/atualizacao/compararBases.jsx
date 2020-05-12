@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios'
 
 import BasesCheckBox from './basesCheckBox'
@@ -9,20 +9,20 @@ import { bases as basesArq } from "../arq/bases";
 
 import './styles.css'
 
-const URL_DUMP = 'http://prg01.datacoper.com.br:40580/Homer/rest/'
+//const URL_DUMP = 'http://prg01.datacoper.com.br:40580/Homer/rest/'
 
 export default () => {
 
     let [bases, setBases] = useState([])
     let [baseMain, setBaseMain] = useState('')
-    let [tabelas, setTabelas] = useState('')
+    //let [tabelas, setTabelas] = useState('')
 
     useEffect(() => {
         let bases = basesArq.map(b => { return {...b, status: ''} })
         console.log(bases)
         setBases(bases)
         setBaseMain('main')
-        setTabelas('est001')
+        //setTabelas('est001')
     }, [])
 
     const changeItem = (base) => {
@@ -47,6 +47,7 @@ export default () => {
         setBases(newBases)
     }
 
+    /*
     const execDiff = baseMain => {
         bases.filter(base => {
             return base.selected
@@ -63,6 +64,7 @@ export default () => {
             })
         })
     }
+    */
 
     const executar = () => {
         let basesSel = bases.filter(b => b.selected)
@@ -88,6 +90,7 @@ export default () => {
         */
     }
 
+    /*
     function wait(time) {
         return new Promise(resolve => {
             setTimeout(() => {
@@ -95,6 +98,7 @@ export default () => {
             }, time);
         });
     }
+    */
 
     const setMain = (evt) => {
         setBaseMain(evt.target.value)

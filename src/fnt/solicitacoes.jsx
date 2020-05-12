@@ -7,7 +7,11 @@ import SolsUsuario from './solsUsuario'
 import SolsModulo from './solsModulo'
 import DetalhesSol from './detalhesSols'
 import CardSol from './cardSol'
+import Version from './version'
+
 import dados from '../dados'
+
+import './solicitacoes.css'
 
 const URLBASE = 'http://projetos01.datacoper.com.br/issues.json'
 const idTrackerBUG = 10
@@ -42,6 +46,11 @@ export default class Solicitacoes extends Component {
                 tipoSol: '',
                 tipoLista: '',
                 list: []
+            },
+            version: {
+                id: 1228,
+                description: 'Demandas a serem entregues em 25/05/2020.',
+                issues: []
             }
         }
         this.detalhar = this.detalhar.bind(this)
@@ -66,8 +75,14 @@ export default class Solicitacoes extends Component {
             this.getUsuarios(resp.data.issues)
             this.getEtapas(resp.data.issues)
             this.atualizarListagem()
-            this.setState({...this.state, solicitacoes})
 
+            const issues_v = solicitacoes.filter(s => {
+                return s.fixed_version.id === this.state.version.id
+            })
+            const version = {...this.state.version, issues: issues_v}
+            
+            this.setState({...this.state, solicitacoes, version})
+            
             if(resp.data.total_count > offset + limit)
                 this.reqget(url, offset + limit, projeto)
                 
@@ -239,7 +254,7 @@ export default class Solicitacoes extends Component {
         let solsBugs = this.filtrar('bugs')
 
         return (
-            <div className="container">
+            <div className="conteudo">
                 <If test={this.state.show === 'geral'}>
                     <div className="row">
                         <CardSol solicitacoes={this.state.solicitacoes} tipoSol='geral'
@@ -248,6 +263,11 @@ export default class Solicitacoes extends Component {
                         <CardSol solicitacoes={solsBugs} tipoSol='bugs'
                             showEtapa={this.showEtapa} showUsuario={this.showUsuario} showModulo={this.showModulo}
                             titulo='Bugs' subtitulo='Total' />
+                    </div>
+                    <div className="row">
+                        <div>
+                            <Version version={this.state.version}/>
+                        </div>
                     </div>
                 </If>
                 <If test={this.state.show === 'etapa'}>
