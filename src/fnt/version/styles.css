@@ -15,10 +15,29 @@
 .text-bold {
     font-weight: bold;
     margin-right: 5px;
+    border: none;
 }
 
 .version-detalhes {
     margin-top: 30px;
     display: flex;
     flex-direction: column;
+}
+
+.group-issues {
+    border: 1px;
+    border-radius: 5px;
+    border-color: #b1afaf;
+    border-style: solid;
+    cursor: pointer;
+    background-color: aliceblue;
+}
+
+.list-issues {
+    margin-top: 10px;
+}
+
+.list-issues div {
+    margin-right: 5px;
+    padding-right: 5px;
 }

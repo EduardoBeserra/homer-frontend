@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import './styles.css'
 
+const BASE_URL = 'http://projetos01.datacoper.com.br/issues/'
 export default ({ version }) => {
 
     const { description, issues} = version
+    const [listSols, setListSols] = useState([])
 
     let group_etapa = {}
     let resumo = []
@@ -24,8 +26,14 @@ export default ({ version }) => {
         })
 
         return resumo.map(etapa => {
-            return <div key={etapa.id}><div className="text-bold">{etapa.name}:</div>{etapa.qtd}</div>
+            return <div key={etapa.id} className="group-issues" onClick={() => filtarListSols(etapa.id)}><div className="text-bold">{etapa.name}:</div>{etapa.qtd}</div>
         })
+    }
+
+    const filtarListSols = idetapa => {
+        setListSols(issues.filter(issue => {
+            return issue.status.id === idetapa
+        }))
     }
     
     return (
@@ -37,6 +45,11 @@ export default ({ version }) => {
                 {listarDetalhes()}
             </div>
 
+            <div className="list-issues">
+                {listSols.map(issue => {
+                    return <div><a target="_blank" href={`${BASE_URL}/${issue.id}`}>#{issue.id}</a></div>
+                })}
+            </div>
         </div>
     )
 }
