@@ -47,7 +47,7 @@ export default ({ version }) => {
 
             <div className="list-issues">
                 {listSols.map(issue => {
-                    return <div><a target="_blank" href={`${BASE_URL}/${issue.id}`}>#{issue.id}</a></div>
+                    return <div><a target="_blank" href={`${BASE_URL}${issue.id}`}>#{issue.id}</a></div>
                 })}
             </div>
         </div>

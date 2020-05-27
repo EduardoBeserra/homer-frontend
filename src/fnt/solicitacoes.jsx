@@ -166,6 +166,7 @@ export default class Solicitacoes extends Component {
         this.modulos.push({ id: '119', name: 'Indústria'})
         this.modulos.push({ id: '120', name: 'Geral'})
         this.modulos.push({ id: '121', name: 'Relatórios'})
+        this.modulos.push({ id: '145', name: 'Painéis'})
         this.modulos.push({ id: '156', name: 'Patrimonial'})
     }
 

@@ -35,9 +35,11 @@
 
 .list-issues {
     margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 }
 
 .list-issues div {
-    margin-right: 5px;
-    padding-right: 5px;
+    margin-right: 10px;
 }
