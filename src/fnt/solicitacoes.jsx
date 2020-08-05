@@ -48,7 +48,7 @@ export default class Solicitacoes extends Component {
                 list: []
             },
             version: {
-                id: 1230,
+                id: 1231,
                 description: 'Entrega Agosto/2020',
                 issues: []
             }
