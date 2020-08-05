@@ -7,7 +7,7 @@ import SolsUsuario from './solsUsuario'
 import SolsModulo from './solsModulo'
 import DetalhesSol from './detalhesSols'
 import CardSol from './cardSol'
-import Version from './version'
+import Version from './sol_version'
 
 import dados from '../dados'
 
@@ -48,8 +48,8 @@ export default class Solicitacoes extends Component {
                 list: []
             },
             version: {
-                id: 1228,
-                description: 'Demandas a serem entregues em 25/05/2020.',
+                id: 1230,
+                description: 'Entrega Agosto/2020',
                 issues: []
             }
         }

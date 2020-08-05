@@ -11,6 +11,7 @@ import SolsEtapa from './fnt/solsEtapa'
 import Gerador from './gerador-codigo/gerador-codigo'
 import PieSolsClientes from './fnt/graficos/PieSolsClientes'
 import Int003 from './int003/int003'
+import Versions from './versions'
 
 export default props => (
     <div className="content-area">
@@ -25,6 +26,7 @@ export default props => (
             <Route path='/geradorcodigo' component={Gerador} />
             <Route path='/graficos' component={PieSolsClientes} />
             <Route path='/int003' component={Int003} />
+            <Route path='/versions' component={Versions} />
 
             <Redirect from="*" to="/" />
         </Switch>
