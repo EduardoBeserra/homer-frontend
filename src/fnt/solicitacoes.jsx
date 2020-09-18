@@ -77,7 +77,11 @@ export default class Solicitacoes extends Component {
             this.atualizarListagem()
 
             const issues_v = solicitacoes.filter(s => {
-                return s.fixed_version.id === this.state.version.id
+                console.log(s.id, s.fixed_version)
+                if(s.fixed_version)
+                    return s.fixed_version.id === this.state.version.id
+                else
+                    return false
             })
             const version = {...this.state.version, issues: issues_v}
             
