@@ -48,8 +48,8 @@ export default class Solicitacoes extends Component {
                 list: []
             },
             version: {
-                id: 1231,
-                description: 'Entrega Agosto/2020',
+                id: 1232,
+                description: 'Entrega Setembro/2020',
                 issues: []
             }
         }
@@ -77,7 +77,6 @@ export default class Solicitacoes extends Component {
             this.atualizarListagem()
 
             const issues_v = solicitacoes.filter(s => {
-                console.log(s.id, s.fixed_version)
                 if(s.fixed_version)
                     return s.fixed_version.id === this.state.version.id
                 else
